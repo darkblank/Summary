@@ -204,7 +204,9 @@ sample_list를 이용, 3번째 요소인 'c'를 대문자 'C'로 바꿔본다.
 
 #### 특정 위치에 리스트 항목 추가 (insert)
 
-리스트 함수 **insert(offset)**을 사용  
+
+리스트 함수 **insert(offset)** 을 사용  
+
 
 - fruits리스트의 1번째 위치에 'mango'를 추가해보자
 - fruits리스트의 100번째 위치에 'pineapple'을 추가해보자
