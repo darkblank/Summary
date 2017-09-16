@@ -131,3 +131,158 @@ string % data
 >>> '{:~^10d}'.format(d)
 '~~~~37~~~~'
 ```
+
+---
+
+## 06. 시퀀스
+
+### 리스트
+
+리스트는 순차적인 데이터를 나타내는 데 유용하며, 문자열과는 달리 내부 항목을 변경할 수 있다.
+
+#### 리스트의 생성
+
+```
+>>> empty_list1 = []
+>>> empty_list2 = list()
+>>> sample_list = ['a', 'b', 'c', 'd']
+>>> sample_list2 = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+```
+
+#### 다른 데이터를 리스트로 변환
+
+**list** 함수를 사용
+
+```python
+>>> list('League of legends')
+['L', 'e', 'a', 'g', 'u', 'e', ' ', 'o', 'f', ' ', 'l', 'e', 'g', 'e', 'n', 'd', 's']
+```
+
+이 외에도 리스트로 변환 가능한 타입에서 사용가능하다.
+
+#### 인덱스 연산
+
+sample_list2를 이용해서 실습. 5월, 7월을 인덱스연산을 통해 추출해보자.
+
+#### 내부항목 변경
+
+sample_list를 이용, 3번째 요소인 'c'를 대문자 'C'로 바꿔본다.
+
+#### 슬라이스 연산
+
+- sample\_list2를 이용, 1월부터 3월씩 건너뛴 결과를 quarters에 할당
+- sample\_list2를 이용, 끝에서부터 3번째 요소까지를 last_three에 할당
+- sample\_list2를 이용, 끝에서부터 처음까지(거꾸로) 2월씩 건너뛴 결과를 reverse\_two\_steps에 할당
+
+#### 리스트 항목 추가 (append)
+
+```python
+>>> sample_list.append('e')
+>>> sample_list
+['a', 'b', 'c', 'd', 'e']
+```
+
+#### 리스트 병합 (extend, +=)
+
+```
+>>> fruits = ['apple', 'banana', 'melon']
+>>> colors = ['red', 'green', 'blue']
+>>> fruits.extend(colors)
+>>> fruits
+['apple', 'banana', 'melon', 'red', 'green', 'blue']
+```
+
+```
+>>> fruits = ['apple', 'banana', 'melon']
+>>> colors = ['red', 'green', 'blue']
+>>> fruits += colors
+>>> fruits
+['apple', 'banana', 'melon', 'red', 'green', 'blue']
+```
+
+**extend**대신 **append**를 사용하면?
+
+#### 특정 위치에 리스트 항목 추가 (insert)
+
+리스트 함수 **insert(offset)**을 사용  
+
+- fruits리스트의 1번째 위치에 'mango'를 추가해보자
+- fruits리스트의 100번째 위치에 'pineapple'을 추가해보자
+
+```
+>>>fruits.insert(0, 'mango')
+>>>fruits.insert(99, 'pineapple')
+```
+
+#### 특정 위치 리스트 항목 삭제 (del)
+
+파이썬 구문 **del**을 사용  
+> del은 리스트 함수가 아닌, 파이썬 구문이므로 `del <리스트>[오프셋]` 형식을 사용한다.
+
+```
+>>> del fruits[0]
+```
+
+#### 값으로 리스트 항목 삭제 (remove)
+
+```
+>>> fruits.remove('mango')
+```
+
+#### 리스트 항목 추출 후 삭제 (pop)
+
+```
+>>> fruits.pop()
+>>> fruits.pop(-3)
+```
+
+#### 값으로 리스트 항목 오프셋 찾기 (index)
+
+```
+>>> fruits.index('red')
+```
+
+#### 존재여부 확인 (in)
+
+```
+>>> 'red' in fruits
+True
+```
+
+#### 값 세기 (count)
+
+```
+>>> fruits.append('red')
+>>> fruits.append('red')
+>>> fruits.count('red')
+3
+```
+
+#### 정렬하기 (sort, sorted)
+
+- sort는 리스트 자체를 정렬
+- sorted는 리스트의 정렬 복사본을 반환
+
+#### 리스트 복사 (copy)
+
+`L=['a', 'b', 'c']` 라는 리스트가 있다고 가정할 때 `L2=L`으로 `L2`도 `['a', 'b', 'c']`라는 리스트를 가리키게 할 수 있다. 하지만 여기서 `L`리스트 내부의 **'a'**라는 값을 **'A'**로 바꾸면 `L2` 리스트 내부의 **'a'**라는 값도 **'A'**로 바뀌게 된다. 이러한 현상을 방지하기 위한 것이 리스트 복사이다.
+
+- copy함수 (ex. L2 = L.copy())
+- list함수 (ex. L2 = list(L))
+- 슬라이스 연산[:] (ex. L2 = L[:])
+
+#### 언패킹 (unpacking)
+
+N개의 요소를 가진 튜플이나 시퀀스를 N개나 그 이하의 요소로 나누려고 할 때 유용하다. 순환 가능한 모든 객체에 적용 가능하다.<br>
+또한, 값의 치환에도 유용하게 쓰일 수 있다.
+
+```
+>>>colors = ['red', 'green', 'blue']
+>>>f1, f2, f3 = colors
+>>>f1
+'red
+>>>f2
+'green'
+>>>f3
+'blue'
+```
