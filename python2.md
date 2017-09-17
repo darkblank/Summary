@@ -104,4 +104,164 @@ for color in colors:
 [(color, fruit) for color in colors for fruit in fruits]
 ```
 
- 
+---
+
+## 함수(function)
+
+#### 매개변수(parameter)와 인자(argument)의 차이
+
+함수 내부에서 함수에게 전달되어 온 변수는 매개변수라 부르며, 함수를 호출할 때 전달하는 변수는 인자로 부른다.
+
+```python
+# 함수 정의때는 매개변수
+def func(매개변수1, 매개변수2):
+  ...
+  
+# 함수 호출시에는 인자
+>>> func(인자1, 인자2)
+```
+
+#### 리턴값이 없을 경우
+
+함수에서 리턴해 주는 값이 없을 경우, 아무것도 없다는 뜻을 가진 `None`객체를 얻는다.
+
+#### 기본 매개변수값 지정
+
+인자가 제공되지 않을 경우, 기본 매개변수로 사용할 값을 지정할 수 있다.
+
+```python
+>>> def student(name, age, gender, cls='WPS'):
+...   return {'name': name, 'age': age, 'gender': gender, 'class': cls}
+... 
+>>> student('hanyeong.lee', 30, 'male')
+{'name': 'hanyeong.lee', 'age': 30, 'gender': 'male', 'class': 'WPS'}
+```
+
+#### 기본 매개변수값의 정의 시점
+
+> 기본 매개변수값은 함수가 실행될 때 마다 계산되지 않고, 함수가 정의되는 시점에 계산되어 계속해서 사용된다.
+
+```python
+>>> def return_list(value, result=[]):
+...   result.append(value)
+...   return result
+... 
+>>> return_list('apple')
+['apple']
+>>> return_list('banana')
+['apple', 'banana']
+```
+
+함수가 실행되는 시점에 기본 매개변수값을 계산하기 위해, 아래와 같이 바꿔준다.
+
+```python
+>>> def return_list(value, result=None):
+...   if result is None:
+...     result = []
+...   result.append(value)
+...   return result
+... 
+>>> return_list('apple')
+['apple']
+>>> return_list('banana')
+['banana']
+```
+
+#### 위치인자 묶음
+
+함수에 위치인자로 주어진 변수들의 묶음은 `*매개변수명`으로 사용할 수 있다.  
+관용적으로 `*args`를 사용한다.
+
+```python
+def print_args(*args):
+  print(args)
+```
+
+#### 키워드인자 묶음
+
+함수에 키워드인자로 주어진 변수들의 묶음은 `**매개변수명`으로 사용할 수 있다.
+관용적으로 `**kwargs`를 사용한다.
+
+```python
+def print_kwargs(**kwargs):
+  print(kwargs)
+```
+
+#### 스코프(영역)
+
+로컬 스코프에서 글로벌 스코프의 변수를 변경해야 한다면 , `global <변수이름>` 으로 해당 변수가 로컬 스코프에서 생성되는 것이 아닌 글로벌 영역에 이미 존재하는 값을 사용함을 명시해 주어야 한다.<br><br>
+
+로컬 스코프 내부에 또 다른 로컬 스코프가 존재할 수 있다.<br>
+전역 스코프가 아닌, 자신의 바로 바깥 영역의 로컬 스코프(자신보다 한 단계 위의 로컬 스코프)의 데이터를 참조하고자 한다면, `nonlocal <변수이름>` 키워드를 사용한다.
+
+### 클로져(Closure)
+
+함수가 정의된 환경을 말하며, 파이썬 파일이 여러개일 경우 각 파일은 하나의 `모듈`역할을 하고, 각 `모듈`은 독립적인 환경을 가진다.  
+독립된 환경은 각자의 영역을 전역 영역으로 사용한다.
+
+#### 내부함수의 클로져
+
+```python
+>>> level = 0
+>>> def outter():
+...   level = 50
+...   def inner():
+...     nonlocal level
+...     level += 3
+...     print(level)
+...   return inner
+...
+>>> f1 = outter()
+>>> f2 = outter()
+>>> f1()
+53
+>>> f1()
+56
+>>> f2()
+53
+```
+
+#### 데코레이터 (decorator)
+
+함수를 받아 다른 함수를 반환하는 함수. 예를 들면, 기존에 존재하던 함수를 바꾸지 않고 전달된 인자를 보기위한 디버깅 `print`함수를 추가한다던가 하는 기능을 할 수 있다.
+<br><br>
+여러 함수에 어떠한 특정한 기능을 모두 추가하고자 할 때 유용하다.
+
+```python
+def print_org_type(f):
+    def ret_function(*args):
+        for arg in args:
+            print('%s type: %s' % (arg, type(arg)))
+        return f(*args)
+    return ret_function
+    
+#위의 함수는 원래 함수에 for문 2줄의 기능을 추가해주는 함수이다.
+#만약 for문 두줄이 없다면 위의 함수는 원래 함수를 그대로 출력하는 함수이다.
+```
+
+위의 데코레이터 함수의 사용법은 아래와 같다.
+
+```python
+@print_org_type
+def print_string(str_):
+    return str_
+    
+#위 함수의 실행결과는 다음과 같다
+
+print_org_type(print_string)(str_)
+```
+
+#### 기타
+
+```python
+>>> a = [1,2,3,4]
+>>> def change():
+... 	a[0] = 5
+
+>>> change()
+>>> a
+[5,2,3,4]
+```
+
+이러한 결과가 나타나는 정확한 이유 알아서 정리하기
+	
