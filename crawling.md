@@ -49,7 +49,7 @@ pickle.load(open('저장된 위치','rb'))
 
 **BeautifulSoup** 는 HTML과 XML 파일에서 데이터를 추출하기 위한 파이썬 라이브러리로 이 도구는 파서 트리를 탐색, 검색 및 수정하는 관용적인 방법을 제공하기 위해 자주 사용하는 파서와 함께 작동한다.<br><br>
 
-**BeautifulSoup** 의 자세한 내용은 다음 링크를 참조.<br><br>
+**BeautifulSoup** 의 자세한 내용은 다음 링크를 참조.<br>
 
 https://www.crummy.com/software/BeautifulSoup/bs4/doc/ 
 
@@ -57,6 +57,6 @@ https://www.crummy.com/software/BeautifulSoup/bs4/doc/
 
 ### Requests
 
-**Requests** 의 자세한 내용은 다음 링크를 참조. <br><br>
+**Requests** 의 자세한 내용은 다음 링크를 참조. <br>
 
 http://docs.python-requests.org/en/master/
