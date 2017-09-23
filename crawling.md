@@ -23,13 +23,27 @@ soup.select_one('table.viewList')
 `response.text`로 받아온 데이터 중 content만 뽑은 후 `BeautifulSoup`의 첫번째 인자로 넣어주고 두번째 인자로는 parser인 `lxml`을 넣어주어 `BeautifulSoup`의 객체를 만들어준다. <br>
 이렇게 하면 `BeautifulSoup`에서 content를 `lxml`을 이용, parsing 하여 탐색하기 쉬운 상태로 만들어준다.<br><br>
 
-이렇게 만들어진 객체를(여기서는 `soup`이라는 변수) 여러가지 메서드를 이용해 탐색하여 볼 수 있다. 예제에서는 `BeautifulSoup`의 메서드 중 하나인 `select_one`메서드를 이용해 탐색을 했다.
+이렇게 만들어진 객체를(여기서는 `soup`이라는 변수) 여러가지 `BeautifulSoup`의 메서드를 이용해 탐색하여 볼 수 있다. 예제에서는 `BeautifulSoup`의 메서드 중 하나인 `select_one`메서드를 이용해 탐색을 했다.
+
+탐색을 통해 원하는 데이터를 가져올 수 있다.
 
 ---
 
-### pickle?
+### Pickle
 
-not finished.
+데이터를 저장하고 불러올 때 사용하는 내장함수이다.<br>
+
+물론 `write()`와 `read()`를 이용해 데이터 입출력이 가능하지만, `pickle()`함수는 데이터를 원형 그대로 저장했다가 꺼내오는 것이 편리하다.<br>
+
+```python
+#pickle을 이용한 데이터 저장
+pickle.dump(<저장할 내용>,open('저장할 위치', 'wb'))
+
+#pickle을 이용한 데이터 로드
+pickle.load(open('저장된 위치','rb'))
+```
+
+`pickle()`함수에서는 이진 데이터로 저장하고 불러와야 한다.
 
 ### BeautifulSoup
 
