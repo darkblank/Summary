@@ -45,6 +45,8 @@ pickle.load(open('저장된 위치','rb'))
 
 `pickle()`함수에서는 이진 데이터로 저장하고 불러와야 한다.
 
+---
+
 ### BeautifulSoup
 
 **BeautifulSoup** 는 HTML과 XML 파일에서 데이터를 추출하기 위한 파이썬 라이브러리로 이 도구는 파서 트리를 탐색, 검색 및 수정하는 관용적인 방법을 제공하기 위해 자주 사용하는 파서와 함께 작동한다.<br><br>
@@ -60,3 +62,11 @@ https://www.crummy.com/software/BeautifulSoup/bs4/doc/
 **Requests** 의 자세한 내용은 다음 링크를 참조. <br>
 
 http://docs.python-requests.org/en/master/
+
+---
+
+### Crawling 활용
+
+위의 내용을 응용해서 네이버 웹툰을 가져올 수 있는 crawler를 만듦(로그인 인증문제 해결 안돼서 19금 웹툰은 긁어오기 불가능).
+
+[이 링크](https://github.com/darkblank/crawler)의 `crawler2.py` `episode.py` `utils.py` `/html`에 해당.
