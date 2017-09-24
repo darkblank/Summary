@@ -1,4 +1,4 @@
-## 정규표현식(Regular Expressions)
+## 12.정규표현식(Regular Expressions)
 
 특정한 패턴에 일치하는 복잡한 문자열을 처리할 때 사용하는 기법.
 

@@ -1,4 +1,4 @@
-## 제어문
+## 08.제어문
 
 ### 조건표현식
 
@@ -106,7 +106,7 @@ for color in colors:
 
 ---
 
-## 함수(function)
+## 09.함수(function)
 
 #### 매개변수(parameter)와 인자(argument)의 차이
 
