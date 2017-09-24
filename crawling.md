@@ -76,3 +76,11 @@ http://docs.python-requests.org/en/master/
 위의 내용을 응용해서 네이버 웹툰을 가져올 수 있는 crawler를 만듦(로그인 인증문제 해결 안돼서 19금 웹툰은 긁어오기 불가능).
 
 [이 링크](https://github.com/darkblank/crawler)의 `crawler2.py` `episode.py` `utils.py` `/html`에 해당.
+
+---
+
+### 기타
+
+#### Referer header
+
+**Referer request header** 에는 현재 요청한 페이지로 연결되는 링크가 있던 이전 웹 페이지의 주소가 포함된다. **Referer header** 를 통해 사람들이 방문하는 위치를 식별한다.<br> 
