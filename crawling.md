@@ -65,6 +65,12 @@ http://docs.python-requests.org/en/master/
 
 ---
 
+### Urlparse
+
+내장함수인 `urlparse`를 이용하여 특정 **url** 을 분해하여 원하는 정보를 가져올 수도 있다.
+
+---
+
 ### Crawling 활용
 
 위의 내용을 응용해서 네이버 웹툰을 가져올 수 있는 crawler를 만듦(로그인 인증문제 해결 안돼서 19금 웹툰은 긁어오기 불가능).
