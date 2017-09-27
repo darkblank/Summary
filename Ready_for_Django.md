@@ -55,3 +55,39 @@ sudo apt-get install sqlitebrowser
 위의 명령을 통해 설치를 해준다.
 
 공식 홈페이지 : http://sqlitebrowser.org/
+
+---
+
+### 프로젝트 구조
+
+위에서 만든 프로젝트 구조는 다음과 같다
+
+```
+projects/
+	django/ # Django project들
+		프로젝트 폴더/ # Django project folder
+			.git
+			.gitignore
+			  Django, Python, Linux, macOS,
+			  PyCharm
+			  # Custom
+			  .idea/
+			.python-version (pyenv local)
+			requirements.txt
+
+			애플리케이션 폴더/ # Django application folder
+				manage.py
+				세팅 폴더(패키지)/ # Django settings folder
+					__init__.py
+					settings.py
+					urls.py
+					wsgi.py
+				내부 애플리케이션 폴더/ (ex.blog, mysite, etc.)
+					migrations/
+					__init__.py
+					admin.py
+					apps.py
+					models.py
+					tests.py
+					views.py	
+```
