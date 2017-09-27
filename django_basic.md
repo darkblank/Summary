@@ -122,7 +122,7 @@ Model-View-Controller pattern
 
 #### Request와 Response간에 일어나는 일
 
-![](/home/darkblank/다운로드/20170925_154023.jpg) 
+<img src="https://drive.google.com/open?id=0B0uiIjEPP7VjXzhOY1JfTzJBN3RiLXNBTVozaUFmeHNBLS1J">
 
 1. 사용자의 요청이 server에 도달 (URL로의 HTTP요청)
 2. server는 해당 요청 URL을 Django에 전달
