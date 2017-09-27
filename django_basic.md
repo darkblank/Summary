@@ -122,8 +122,6 @@ Model-View-Controller pattern
 
 #### Request와 Response간에 일어나는 일
 
-<img src="https://drive.google.com/open?id=0B0uiIjEPP7VjXzhOY1JfTzJBN3RiLXNBTVozaUFmeHNBLS1J">
-
 1. 사용자의 요청이 server에 도달 (URL로의 HTTP요청)
 2. server는 해당 요청 URL을 Django에 전달
 3. Django는 전달받은 URL을 urlresolver로 분석해서 작업을 처리할 Controller(View)에 연결
