@@ -148,6 +148,6 @@ URL의 이름: post_detail
    
 	특정 컨트롤러는 이름이 바뀔 수 있음 (또는 다른 컨트롤러가 배정될 수 있음)  
 	URL이름을 기준으로, 매칭패턴을 역(reverse)으로 사용해서 문자열을 생성  
-	ex) `post_detail`이라는 이름의 URL에서, pk는 3에 해당하는 URL을 만드려면  
+	ex) `post_detail`이라는 이름의 URL에서, pk는 3에 해당하는 URL을 만들려면  
 	-> `{% url 'post_detail' pk=3 %}`태그에 의해서 생성됨  
 	-> `post/detail/3/`
