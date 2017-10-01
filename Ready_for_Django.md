@@ -91,3 +91,17 @@ projects/
 					tests.py
 					views.py	
 ```
+
+---
+
+### 디버깅 설정법
+
+우측 상단 또는 **Run** 메뉴의 **Edit Configurations** 설정으로 들어가서 왼쪽 상단의 `+`를 눌러주고 `Python`을 선택하여준다.
+
+**Name** 부분에 적절한 이름을 설정하여준다.(Django runserver 추천) 
+
+**Script** 부분에 `manage.py` 설정하여준다.
+
+**Script parameters** 에 `runserver` 입력하여준다.
+
+**Working directory** 에는 `소스루트로 지정한 폴더, 즉 장고 애플리케이션 폴더`를 지정하여 준다.
