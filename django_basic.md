@@ -4,6 +4,9 @@
 
 이 페이지에서 진행하는 코드는 [Github 저장소](https://github.com/darkblank/djangogirls)에 올라가 있으므로 참고하도록 한다.
 
+**장고 공식 홈페이지**<br>
+https://docs.djangoproject.com/ko/1.11/
+
 ## Django 시작하기
 
 [이 링크](https://github.com/darkblank/Summary/blob/master/Ready_for_Django.md)를 참조하여 Django를 시작하기 위한 환경을 구축한다.<br>
@@ -99,6 +102,24 @@ $python manage.py migrate
 
 우리가 만든 **templates** 폴더를 장고가 참조하게 하기 위해서 `settings.py`에 **TEMPLATE_DIR** 이라는 변수를 만들어 이 곳에 **templates** 폴더의 위치를 적어준다. 그리고 이 **TEMPLATE_DIR** 를 `settings.py`의 **TEMPLATES** 이라는 변수의 딕셔너리 안의 **DIR** 이라는 key의 value에 리스트 형태로 넣어준다. 이렇게 함으로써 템플릿을 사용할 때마다 파일 입출력을 통해 템플릿 파일의 위치를 찾는 수고를 덜 수 있다.
 
+#### 템플릿 상속
+
+장고에서는 템플릿 상속을 지원한다.
+
+만약 중복되어지는 html파일이 많다면 중복되어지는 부분을 base템플릿으로 만든다. 내용이 바뀌게 될 부분만 아래처럼 템플릿 언어로 처리 한다.
+
+```
+{% block <이름> %}
+
+{% endblock %}
+```
+
+base템플릿에 위처럼 템플릿 언어로 처리한 부분을 상속받을 템플릿에도 똑같이 써주고 **block** 태그 안에 바꾸어줄 내용을 html태그를 이용하여 적으면 된다. 템플릿의 상속은 상속받을 html파일의 최상단에 다음과 같이 적어줌으로써 이루어진다.
+
+```
+{% extends <base템플릿 경로> %}
+``` 
+
 ---
 
 ## MVC와 URL
@@ -151,3 +172,23 @@ URL의 이름: post_detail
 	ex) `post_detail`이라는 이름의 URL에서, pk는 3에 해당하는 URL을 만들려면  
 	-> `{% url 'post_detail' pk=3 %}`태그에 의해서 생성됨  
 	-> `post/detail/3/`
+	
+---
+
+### 스태틱 파일
+
+#### 스태틱 폴더 생성
+
+갖가지 정적 파일이나, css파일을 사용하기 위해 STATIC 폴더를 생성하여 준다. 템플릿 폴더와 같은레벨 즉 장고 애플리케이션 폴더 하위에 `static` 이라는 이름으로 생성하여 준다. css파일을 위한 `css` 폴더, image파일을 위한 `image`폴더, bootstrap을 위한 `bootstrap`폴더 등을 `static`폴더 하위에 필요에 따라 각각 만들어준다.
+
+이후에는 템플릿과 마찬가지로 `STATIC_DIR`을 설정하여 주고, `STATICFILES_DIRS` 라는 변수를 만들어 `STATIC_DIR`을 리스트 형태로 넣어준다. 이렇게 함으로써 템플릿과 마찬가지로 파일 입출력을 통해 매번 스태틱파일 경로 위치를 찾는 수고를 덜 수 있다.
+
+#### 스태틱 폴더의 사용
+
+생성되어진 스태틱 폴더를 이용해 스태틱 파일의 경로를 html파일에서 손쉽게 불러들일 수 있다.
+
+스태틱 파일을 사용할 html파일 상단 부분에 `{% load static %}` 이라고 써준 후 스태틱 파일을 사용할 태그의 `href` 부분에 `{% static <static파일 하위 경로> %}` 를 적어주면 된다.
+
+#### bootstrap
+
+http://bootstrapk.com/
