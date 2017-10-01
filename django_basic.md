@@ -156,6 +156,8 @@ Model-View-Controller pattern
 
 ### URL매칭과 {% url %} 태그의 사용
 
+장고는 도메인 뒤의 URL에만 관여한다.
+
 #### URL
 
 ```
