@@ -105,3 +105,15 @@ projects/
 **Script parameters** 에 `runserver` 입력하여준다.
 
 **Working directory** 에는 `소스루트로 지정한 폴더, 즉 장고 애플리케이션 폴더`를 지정하여 준다.
+
+#### 디버깅시 runserver 오류가 날 때
+
+아무리 찾아도 현재 돌아가고 있는 runserver가 없을 때 다음과 같은 명령어를 실행하여 돌아가고 있는 runserver를 찾아서 죽일 수 있다.
+
+```
+$ps -ax | grep runserver 
+#현재 실행되어지는 프로세스중에 runserver 확인
+
+$kill -9 <ID넘버> <ID넘버> 
+#실행되어지는 프로세스 죽이기
+```
