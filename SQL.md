@@ -57,6 +57,8 @@ SELECT COUNT(DISTINCT Country)
 FROM Customers;
 ```
 
+---
+
 ### WHERE
 
 WHERE 절은 지정된 조건을 충족하는 레코드만 추출하고 싶을 때 사용한다.
@@ -84,3 +86,31 @@ IN | To specify multiple possible values for a column
 #### AND OR NOT
 
 WHERE 절은 AND, OR, NOT 연산자와의 결합도 가능하다.
+
+---
+
+### ORDER BY
+
+ORDER BY 문은 결과 집합을 오름차순 또는 내림차순으로 정렬하는데 사용된다. 기본적으로는 오름차순으로 정렬한다.
+
+오름차순 : ASC(옵션 안주었을 시 기본값)<br>
+내림차순 : DESC
+
+```
+#ex)Customer 테이블의 모든 데이터를 Country열로 정렬 선택
+SELECT * FROM Customers
+ORDER BY Country;
+
+#다음 예제는 위의 결과와 동일하다(오름차순)
+SELECT * FROM Customers
+ORDER BY Country ASC;
+
+#ex)Customers테이블의 모든 데이터를 Country열로 내림차순 정렬 선택
+SELECT * FROM Customers
+ORDER BY Country DESC;
+
+#ex)Customers 테이블의 모든 데이터를 Country열로 오름차순으로 정렬 후 CustomerName열로 내림차순 정렬 선택
+SELECT * FORM Customers
+ORDER BY Country ASC, CustomerName DESC;
+```
+
