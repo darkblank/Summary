@@ -73,9 +73,9 @@ WHERE Country='Mexico';
 ---|---
 = | Equal
 <> | Not equal. Note: In some versions of SQL this operator may be written as !=
-> | Greater than
+\> | Greater than
 < | Less than
->= | Greater than or equal
+\>= | Greater than or equal
 <= | Less than or equal
 BETWEEN | Between an inclusive range
 LIKE | Search for a pattern
