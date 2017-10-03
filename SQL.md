@@ -99,6 +99,27 @@ IN | To specify multiple possible values for a column
 
 WHERE 절은 AND, OR, NOT 연산자와의 결합도 가능하다.
 
+#### IN
+
+IN 연산자를 사용하여 WHERE 절에 여러 값을 지정할 수 있다.<br>
+IN 연산자는 여러 OR 조건의 속기법이다.
+
+```python
+#ex)Customers테이블의 Country필드가 'Germany' 또는 'France' 또는 'UK' 인 모든 값
+SELECT * FROM Customers
+WHERE Country IN ('Germany', 'France', 'UK');
+```
+
+#### BETWEEN
+
+주어진 범위 내의 값을 선택한다. 값은 숫자, 텍스트 또는 날짜 등이 될 수 있으며 시작값과 끝값이 포함되어진다.
+
+```python
+SELECT column_name
+FROM table_name
+WHERE column_name BETWEEN value1 AND value2;
+```
+
 ---
 
 ### ORDER BY
@@ -125,6 +146,8 @@ ORDER BY Country DESC;
 SELECT * FORM Customers
 ORDER BY Country ASC, CustomerName DESC;
 ```
+
+---
 
 ### INSERT INTO
 
@@ -220,6 +243,8 @@ FROM table_name
 WHERE condition;
 ```
 
+---
+
 ### LIKE
 
 WHERE 절에서 필드의 지정된 패턴을 검색하는 데 사용된다.
@@ -233,6 +258,10 @@ AND 또는 OR 연산자를 사용하여 여러 조건의 결합도 가능하다.
 #ex)Customers 테이블의 CustomerName필드에서 'a'로 시작하는 모든 값
 SELECT * FROM Customers
 WHERE CustomerName LIKE 'a%';
+
+#ex)Customers 테이블의 CustomerName필드에서 'a' 또는 'b'또는 'c'로 시작하는 모든 값
+SELECT * FROM Customers
+WHERE CustomerName LIKE '[a-c]%';
 ```
 
 LIKE Operator | Description
@@ -245,3 +274,21 @@ WHERE CustomerName LIKE 'a_%_%' | Finds any values that start with 'a' and are a
 WHERE ContactName LIKE 'a%o' | Finds any values that starts with 'a' and ends with 'o'
 
 ---
+
+### Aliases
+
+Aliases는 테이블 또는 테이블 필드에 임시 이름을 읽기 쉽게 지정하는 것에 사용된다. Aliases는 조회 기간 동안만 존재한다.
+
+```python
+SELECT coulumn_name AS alias_name
+FROM table_name;
+
+SELECT column_name
+FROM table_name AS alias_name;
+```
+
+### JOIN
+
+JOIN문은 2개 이상의 테이블을 관련되어진 필드를 기반으로 하여 결합시킨다.
+
+#### INNER JOIN
