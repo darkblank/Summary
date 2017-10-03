@@ -53,7 +53,7 @@ SELECT문의 예제는 위에서 다루었으므로 아래에서는 SELECT문의
 
 중복 값을 제외한 값들만 나열하고 싶을 때 사용한다.
 
-```
+```python
 #ex)Customer 테이블의 Country열에서 중복이 제거되어진 값을 나열
 SELECT DISTINCT Country
 FROM Customer;
@@ -75,7 +75,7 @@ FROM Customers;
 
 WHERE 절은 지정된 조건을 충족하는 레코드만 추출하고 싶을 때 사용한다.
 
-```
+```python
 #ex)Customers 테이블에서 Country가 Mexico인 데이터를 추출할 때
 SELECT * FROM Customers
 WHERE Country='Mexico';
@@ -108,7 +108,7 @@ ORDER BY 문은 결과 집합을 오름차순 또는 내림차순으로 정렬�
 오름차순 : ASC(옵션 안주었을 시 기본값)<br>
 내림차순 : DESC
 
-```
+```python
 #ex)Customer 테이블의 모든 데이터를 Country열로 정렬 선택
 SELECT * FROM Customers
 ORDER BY Country;
@@ -130,8 +130,8 @@ ORDER BY Country ASC, CustomerName DESC;
 
 INSERT INTO문은 테이블에 새 레코드를 삽입하는 데 사용된다.
 
-```
-ex)Customers 테이블의 지정된 필드에만 데이터 삽입
+```python
+#ex)Customers 테이블의 지정된 필드에만 데이터 삽입
 INSERT INTO Customers (CustomerName, City, Country)
 VALUES ('Cardinal', 'Stavanger', 'Norway');
 ```
@@ -144,8 +144,8 @@ NULL은 값이 없는 것을 의미한다. 이 것은 0이나 공백값이 있�
 
 NULL값은 <이나 =같은 비교 연산자로 비교할 수 없고 대신 IS NULL 연산자와 IS NOT NULL 연산자를 사용해야 한다.
 
-```
-ex)IS NULL 구문의 예
+```python
+#ex)IS NULL 구문의 예
 SELECT column_names
 FROM table_name
 WHERE column_name IS NULL;
@@ -157,7 +157,7 @@ WHERE column_name IS NULL;
 
 기존의 레코드를 수정할 때 사용한다.
 
-```
+```python
 #ex)Customer테이블의 CustomerID가 1인 레코드의 수정
 UPDATE Customers
 SET ContactName='Alfred Schmidt', City='Frankfurt'
@@ -172,7 +172,7 @@ WHERE 절을 적지 않으면 모든 레코드의 ContactName과 City가 수정�
 
 기존 레코드를 삭제할 때 사용된다.
 
-```
+```python
 #ex)Customers 테이블의 특정 레코드 삭제하기
 DELETE FROM Customers
 WHERE CustomerName='Alfreds Futterkiste';
@@ -187,7 +187,7 @@ DELETE FROM table_name;
 
 선택된 필드의 가장 작은값 또는 가장 큰 값을 리턴한다.
 
-```
+```python
 #ex)Products 테이블의 Price 중 가장 최저가격을 찾는다.
 SELECT MIN(Price) AS SmallestPrice
 FROM Products;
@@ -203,7 +203,7 @@ AVG() 함수는 숫자 필드의 평균값을 반환한다.
 
 SUM() 함수는 숫자 필드의 총 합계를 반환한다.
 
-```
+```python
 #ex)COUNT()
 SELECT COUNT(column_name)
 FROM table_name
@@ -229,7 +229,7 @@ WHERE 절에서 필드의 지정된 패턴을 검색하는 데 사용된다.
 
 AND 또는 OR 연산자를 사용하여 여러 조건의 결합도 가능하다.
 
-```
+```python
 #ex)Customers 테이블의 CustomerName필드에서 'a'로 시작하는 모든 값
 SELECT * FROM Customers
 WHERE CustomerName LIKE 'a%';
