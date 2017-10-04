@@ -69,6 +69,19 @@ FROM Customers;
 
 데이터베이스마다 문법이 다를 수 있으므로 상단의 홈페이지 링크를 참조하여 확인한다.
 
+#### SELECT INTO
+
+한 테이블의 데이터를 새 테이블로 복사한다.
+
+```python
+SELECT column1, column2, column3, ...
+INTO newtable IN externaldb
+FROM oldtable
+WHERE condition;
+```
+
+위의 IN구문은 옵션이다. 다른 데이터베이스로 테이블을 복사할 때 사용되어진다.
+
 ---
 
 ### WHERE
@@ -159,6 +172,19 @@ INSERT INTO Customers (CustomerName, City, Country)
 VALUES ('Cardinal', 'Stavanger', 'Norway');
 ```
 
+#### INSERT INTO SELECT
+
+한 테이블의 데이터를 복사하여 다른 테이블에 삽입할 때 사용되어진다.
+
+소스 및 목표 테이블의 데이터 유형이 일치하여야 한다.
+
+```python
+INSERT INTO table2 (column1, column2, column3,...)
+SELECT column1, column2, column3, ...
+FROM table1
+WHERE condition;
+```
+
 ---
 
 ### NULL
@@ -206,7 +232,9 @@ DELETE FROM table_name;
 
 ---
 
-### MIN, MAX
+### Aggregate functions
+
+#### MIN, MAX
 
 선택된 필드의 가장 작은값 또는 가장 큰 값을 리턴한다.
 
@@ -216,9 +244,7 @@ SELECT MIN(Price) AS SmallestPrice
 FROM Products;
 ```
 
----
-
-### COUNT, AVG, SUM
+#### COUNT, AVG, SUM
 
 COUNT() 함수는 지정된 기준과 일치하는 레코드의 개수를 반환한다.
 
@@ -241,6 +267,29 @@ WHERE condition;
 SELECT SUM(column_name)
 FROM table_name
 WHERE condition;
+```
+
+#### GROUP BY
+
+aggregate functions와 함께 사용되어 결과 집합을 하나 이상의 열로 그룹화한다.
+
+```python
+#ex)Customers테이블에서 같은 Country를 갖고 있는 CustomerID의 수
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country;
+```
+
+#### HAVING
+
+WHERE 이 aggregate functions와 함께 사용되어질 수 없어서 HAVING을 사용한다.
+
+```python
+#ex)Customers테이블에서 5명 이상의 CustmerID를 갖고 있는 Country만 나열
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country
+HAVING COUNT(CustomerID) > 5;
 ```
 
 ---
@@ -287,8 +336,119 @@ SELECT column_name
 FROM table_name AS alias_name;
 ```
 
+---
+
 ### JOIN
 
 JOIN문은 2개 이상의 테이블을 관련되어진 필드를 기반으로 하여 결합시킨다.
 
 #### INNER JOIN
+
+INNER JOIN문은 2개 이상의 테이블에서 일치하는 값을 가진 레코드만 선택한다.
+
+```python
+SELECT column_names
+FROM table1
+INNER JOIN table2 ON table1.column_name = table2.column_name;
+```
+
+위 예제에서 만약 table1.column_name과 table2.column_name에서 일치하는 값이 없다면 어떠한 레코드도 선택되어지지 않는다.
+
+#### LEFT JOIN
+
+LEFT JOIN은 왼쪽 테이블의 모든 레코드와 오른쪽 테이블의 일치하는 값을 가진 레코드를 반환하며, 오른쪽 레코드에서 일치하는 값이 없다면 NULL 값이 나오게 된다.
+
+```python
+SELECT column_names
+FROM table1
+LEFT JOIN table2 ON table1.column_name = table2.column_name;
+```
+
+#### RIGHT JOIN
+
+RIGHT JOIN은 LEFT JOIN과 반대의 결과를 가진다.
+
+```python
+SELECT column_names
+FROM table1
+RIGHT JOIN table2 ON table1.column_name = table2.column_name;
+```
+
+#### FULL OUTER JOIN
+
+FULL OUTER JOIN은 왼쪽과 오른쪽 테이블의 모든 값을 반환한다.
+
+```python
+SELECT column_names
+FROM table1
+FULL OUTER JOIN table2 ON table1.column_name = table2.column_name;
+```
+
+#### SELF JOIN
+
+SELF JOIN은 하나의 테이블을 두개의 테이블처럼 JOIN으로 조회하는 방법으로, 원하는 데이터들이 한 테이블에 들어있을 때 사용한다.
+
+```python
+SELECT column_names
+FROM table1 T1, table1 T2
+WHERE condition;
+```
+
+---
+
+### UNION
+
+두 개 이상의 SELECT문의 결과 집합을 결합하는 데 사용되는 연산자이다.
+
+각 SELECT문은 같은 수의 열을 가져야 하며, 열은 유사한 데이터 타입을 가져야 한다. 또한, 각 SELECT문의 열은 같은 순서로 있어야 한다.
+
+UNION 연산자는 기본적으로 중복값은 제외하고 선택한다. 따라서 중복값을 허용하려면 UNION ALL을 사용한다.
+
+```python
+SELECT column_names FROM table1
+UNION
+SELECT column_names FROM table2
+```
+
+---
+
+### EXISTS
+
+하위 쿼리의 레코드 존재 여부를 테스트하는 데 사용되어진다.<br>
+하위 쿼리가 하나 이상의 레코드를 반환하면 true를 반환한다.
+
+```python
+SELECT column_names
+FROM table_name
+WHERE EXISTS
+(SELECT column_name FROM table_name WHERE condition);
+```
+
+---
+
+### ANY & ALL
+
+ANY 연산자는 하위 쿼리 값 중 조건을 충족하는 값들이 있으면 true와 함께 반환한다.<br>
+ALL 연산자는 모든 하위 쿼리 값이 조건을 충족하면 true와 함께 반환한다.
+
+```python
+#ex)ANY
+SELECT column_names
+FROM table_name
+WHERE column_name operator ANY
+(SELECT column_name FROM table_name WHERE condition);
+
+#ex)ALL
+SELECT collumn_names
+FROM table_name
+WHERE column_name operator ALL
+(SELECT column_name FROM table_name WHERE condition);
+```
+
+---
+
+### Comments
+
+한 줄 주석은 `--`로 시작한다.
+
+여러줄 주석은 `/*`로 시작하고 `*/`로 끝난다.
