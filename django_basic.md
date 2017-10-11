@@ -69,6 +69,16 @@ $python manage.py makemigrations <app 이름>
 $python manage.py migrate
 ```
 
+#### Shell에서 객체 만들기
+
+```python
+# shell 안에서 메모리에만 저장
+>>> <class명>()
+
+# 위의 결과에 save 메서드까지 실행한 결과를 가짐
+# 즉 데이터베이스에 저장이 되어짐
+>>> <class명>.objects.create()
+```
 
 ### 관리자 페이지
 
@@ -120,9 +130,13 @@ base템플릿에 위처럼 템플릿 언어로 처리한 부분을 상속받을 
 {% extends <base템플릿 경로> %}
 ``` 
 
-#### form태그 시 주의사항
+#### form태그
 
 form태그 뒤에는 항상 `{% csrf token %}` 템플릿 태그를 넣어주어야 한다.
+
+##### form action
+
+**submit** 이 되었을 때 요청을 받게 될 url이다.
 
 ---
 
@@ -198,3 +212,18 @@ URL의 이름: post_detail
 #### bootstrap
 
 http://bootstrapk.com/
+
+### request메서드
+
+`request.POST(dict형 객체)`로 **Post request** 에 대한 value들을 받아올 수 있다.
+
+```python
+# ex
+request.POST('key')
+```
+
+#### request.POST 와 request.POST.get
+
+`request.POST`로 값을 받아 왔을 때는 value가 없을 때 오류가 발생한다.
+
+`request.POST.get`으로 값을 받아 왔을 때는 value가 없을 때 None을 리턴한다.
