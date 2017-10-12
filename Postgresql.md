@@ -56,6 +56,8 @@ $ psql <데이터베이스 이름>
 $ sudo u <계정 이름> psql <데이터베이스 이름>
 ```
 
+---
+
 ### django 데이터베이스 설정 바꾸기
 
 **settings.py**
@@ -71,4 +73,12 @@ DATABASES = {
         'PASSWORD': '1234', # 계정 비밀번호
     }
 }
+```
+
+#### psycopg2 설치
+
+`postgresql`을 사용할 환경에서 `python`과 `postgresql`을 연결해주는 `psycopg2` 라이브러리를 설치 해주어야 한다.
+
+```
+$ pip install psycopg2
 ```
