@@ -55,3 +55,20 @@ $ psql <데이터베이스 이름>
 # 계정 변환이 이루어지지 않은 상태에서는
 $ sudo u <계정 이름> psql <데이터베이스 이름>
 ```
+
+### django 데이터베이스 설정 바꾸기
+
+**settings.py**
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'doc', # 사용할 데이터베이스 이름
+        'HOST': 'localhost',
+        'PORT': '5432',
+        'USER': 'darkblank', # 데이터베이스를 사용하는 계정
+        'PASSWORD': '1234', # 계정 비밀번호
+    }
+}
+```
