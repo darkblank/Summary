@@ -56,6 +56,51 @@ $./manage.py migrate
 
 --- 
 
+### 데이터베이스 변경
+
+**settings.py**
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'doc', # 사용할 데이터베이스 이름
+        'HOST': 'localhost',
+        'PORT': '5432',
+        'USER': 'darkblank', # 데이터베이스를 사용하는 계정
+        'PASSWORD': '1234', # 계정 비밀번호
+    }
+}
+```
+
+`python`과 `postgresql`을 연결해주는 `psycopg2` 라이브러리를 설치 해주어야 한다.
+
+```
+$ pip install psycopg2
+```
+
+`settings.py` 내용을 다음과 같이 바꿔준 후 기존 데이터베이스의 내용을 덤프 떠야 한다.
+
+```
+$ python manage.py dumpdata <app이름> --indent=4 >> dump.json
+```
+
+이렇게 해주면 `manage.py`파일과 같은 레벨에 `dump.json`이라는 파일이 생성되어진다.
+
+데이터베이스가 변경되었기 때문에 `migrate`을 새로 해준다
+
+```
+$ python manage.py migrate
+```
+
+덤프 뜬 내용을 변경되어진 데이터베이스 테이블에 적용시켜준다.
+
+```
+$ python manage.py loaddata dump.json
+```
+
+---
+
 ### 모델 생성
 
 내부 애플리케이션에서 사용할 모든 모델 객체는 `models.py`에 선언하여 만들어 준다. 모델 객체는 데이터베이스랑 연결되어지는 객체이고 모델 객체를 정의할 때 `models.Model`를 상속받아 만든다. 이를 통해 장고가 데이터베이스와 연결되어지는 모델 객체임을 알게 된다. 이렇게 만들어진 모델 하나(클래스 하나)가 하나의 테이블이 된다.
