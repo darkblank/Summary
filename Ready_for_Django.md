@@ -94,6 +94,53 @@ projects/
 
 ---
 
+### secret_key 숨기기
+
+`startproject`로 생성되어진 폴더와 같은 레벨에 `.config_secret`같은 숨겨진 폴더를 생성한다.
+
+그 안쪽에 `settings_common.json`같은 `json`파일을 생성하여 준다.
+
+아래 내용은 `json`파일 안에 들어갈 내용이다.
+
+```json
+{
+  "django": {
+    "secret_key": "aa_ho^$5910f-%bb6!h!th^p_koop5szllm&_1*rc)+df)$t)t",
+    "databases": {
+      "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "HOST": "localhost",
+        "PORT": "5432",
+        "NAME": "",
+        "USER": "",
+        "PASSWORD": ""
+      }
+    }
+  }
+}
+```
+
+이제 `setting.py`의 **SECRETKEY** 와 **DATABASES** 의 내용을 지워주고
+위 파일의 내용으로 대체하여야 한다. 그러기 위해서는 `settings.py` 내부에 다음과 같은 작업을 해준다.
+
+```python
+ROOT_DIR = os.path.dirname(BASE_DIR)
+CONFIG_SECRET_DIR = os.path.join(ROOT_DIR, '.config_secret')
+
+with open(os.path.join(CONFIG_SECRET_DIR, 'settings_common.json'), 'rt') as f:
+    config_secret_common_str = f.read()
+config_secret_common = json.loads(config_secret_common_str)
+```
+
+위와 같이 작업 해줌으로써 `config_secret_common`이라는 변수에 우리가 `json`파일에 담은 딕셔너리 형태의 내용이 들어가게 된다. 따라서 **SECRETKEY** 와 **DATABASES** 변수에 위의 딕셔너리 형태의 내용을 다음과 같이 담아주도록 한다.
+
+```python
+SECRET_KEY = config_secret_common['django']['secret_key']
+DATABASES = config_secret_common['django']['databases']
+```
+
+---
+
 ### 디버깅 설정법
 
 우측 상단 또는 **Run** 메뉴의 **Edit Configurations** 설정으로 들어가서 왼쪽 상단의 `+`를 눌러주고 `Python`을 선택하여준다.
